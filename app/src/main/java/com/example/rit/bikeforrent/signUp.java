@@ -48,7 +48,7 @@ public class signUp extends AppCompatActivity {
         if (idcardString.length()==13) {
             //idture
         } else {
-            myToast("รหัสบัตรผิด");
+            myToast("รหัสบัตรไม่ถูกต้อง");
         }
 
     }//checkID
