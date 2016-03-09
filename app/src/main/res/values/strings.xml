@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">bikeForRent</string>
+    <string name="signin">Sign In</string>
+    <string name="singout">Sign Out</string>
+
+    <string name="id_card" >ID Card</string>
+    <string name="password">Password</string>
 </resources>
