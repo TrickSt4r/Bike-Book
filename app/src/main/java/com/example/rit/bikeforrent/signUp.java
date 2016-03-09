@@ -40,6 +40,8 @@ public class signUp extends AppCompatActivity {
             //no have space
             checkidcard();
 
+
+
         }
     }
 
