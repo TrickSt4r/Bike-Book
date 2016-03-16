@@ -46,6 +46,8 @@ public class MainActivity extends AppCompatActivity {
 
     }//clicksignMain
 
+
+
     private void myAlert(String strAlert) {
 
         Toast.makeText(MainActivity.this, strAlert, Toast.LENGTH_SHORT).show();
