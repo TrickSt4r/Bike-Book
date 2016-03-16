@@ -2,11 +2,21 @@ package com.example.rit.bikeforrent;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import org.apache.http.NameValuePair;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
+
+import java.util.ArrayList;
 
 public class signUp extends AppCompatActivity {
 
@@ -87,9 +97,33 @@ public class signUp extends AppCompatActivity {
     }//confirmData
 
     private void updateDataToSever() {
+        //conected http
+
+        StrictMode.ThreadPolicy threadPolicy = new StrictMode.ThreadPolicy
+                .Builder().permitAll().build();
+        StrictMode.setThreadPolicy(threadPolicy);
+        try {
+
+            ArrayList<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
+
+            nameValuePairs.add(new BasicNameValuePair("isAdd", "true"));
+            nameValuePairs.add(new BasicNameValuePair("ID_Card", idcardString));
+            nameValuePairs.add(new BasicNameValuePair("Password", passString));
+
+            HttpClient httpClient = new DefaultHttpClient();
+            HttpPost httpPost = new HttpPost("http://swiftcodingthai.com/bic/php_add_user_master.com");
+            httpPost.setEntity(new UrlEncodedFormEntity(nameValuePairs, "UTF-8"));
+            httpClient.execute(httpPost);
 
 
-    }
+            myToast("Update Succsucisfully");
+            finish();
+
+        } catch (Exception e) {
+            myToast("Can't Conneted Sever");
+        }
+
+    }//update Sever
 
     private void myToast(String strtoast) {
         Toast.makeText(signUp.this, strtoast, Toast.LENGTH_SHORT).show();
